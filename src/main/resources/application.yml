@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+app:
+  elasticsearch:
+    url: ${ELASTICSEARCH_URL:http://localhost:9200}
+    index: documents
+  cache:
+    search-ttl-seconds: 60
+    document-ttl-seconds: 300
+  rate-limit:
+    requests-per-minute: 100
+  document:
+    max-body-bytes: 1048576
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
