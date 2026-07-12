@@ -97,6 +97,21 @@ mvn test
 - Redis 7 (cache-aside, sliding-window rate limit)
 - Docker Compose multi-service stack
 
+## The Coordinator (take-home exercise)
+
+Distributed entity locking with Redis — separate from the search API, implements [The Coordinator take-home](docs/COORDINATOR_DESIGN.md):
+
+| Piece | Location |
+|---|---|
+| Redis lock (SET NX PX + fence tokens) | `src/main/java/com/example/coordinator/lock/` |
+| Worker + renewal heartbeat | `src/main/java/com/example/coordinator/worker/` |
+| Simulation harness | `src/main/java/com/example/coordinator/simulation/` |
+| Design note | [docs/COORDINATOR_DESIGN.md](docs/COORDINATOR_DESIGN.md) |
+
+```bash
+make test-coordinator   # requires Docker (Testcontainers Redis)
+```
+
 ## Design Features Implemented
 
 - Multi-tenant isolation (`tenant_id` filter on every ES query)

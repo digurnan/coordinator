@@ -12,6 +12,9 @@ build:
 test:
 	mvn test
 
+test-coordinator:
+	mvn test -Dtest=CoordinatorSimulationTest,RedisEntityLockTest
+
 demo:
 	./scripts/sample_requests.sh
 
